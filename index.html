@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1120">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Dilip's Study Suite</title>
+  <title>My Target Tracker</title>
   <style>
     :root {
       --bg: #f8fafc;
@@ -836,7 +836,7 @@
       color: rgba(255, 255, 255, 0.88);
     }
 
-    /* FOCUS / SITTING POWER (10 Hours Target) */
+    /* FOCUS / SITTING POWER (12 Hours Target) */
     .focus-nav-bar {
       display: flex;
       align-items: center;
@@ -1014,10 +1014,10 @@
     <div class="app-container">
       <div class="header-inner">
         <div class="brand-group">
-          <div class="brand-avatar">D</div>
+          <div class="brand-avatar">🎯</div>
           <div style="min-width:0; overflow:hidden;">
-            <div class="brand-title">Dilip's Study Suite</div>
-            <div class="brand-sub">Offline-First • Local Storage Synced</div>
+            <div class="brand-title">My Target Tracker</div>
+            <div class="brand-sub">Set Goals. Track Progress. Achieve More.</div>
           </div>
         </div>
         <div class="header-actions">
@@ -1283,7 +1283,7 @@
         </div>
       </div>
 
-      <!-- TAB 4: FOCUS (SITTING POWER) -->
+      <!-- TAB 4: FOCUS (SITTING POWER - 12 HOURS TARGET) -->
       <div id="tab-focus" class="tab-pane" style="display:none;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
           <div>
@@ -1291,7 +1291,7 @@
               <span>⚡</span> Sitting Power
             </h2>
             <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;" id="focus-subtitle-date">
-              Thu, Nov 5, 2026 • 25m Slots (10 Hours Target)
+              Thu, Nov 5, 2026 • 25m Slots (12 Hours Target)
             </div>
           </div>
         </div>
@@ -1308,21 +1308,21 @@
           <button class="nav-arrow-btn" onclick="app.shiftFocusDate(1)">❯</button>
         </div>
 
-        <!-- Focus Hero Card (10 Hours Target) -->
+        <!-- Focus Hero Card (12 Hours Target) -->
         <div class="card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem;">
             <div style="font-size:0.95rem; font-weight:900; color:var(--green); display:flex; align-items:center; gap:0.4rem;">
               <span>🔥</span> SITTING POWER PROGRESS
             </div>
             <div style="font-size:0.85rem; font-weight:800; background:var(--card-sub); border:1px solid var(--border); padding:0.25rem 0.65rem; border-radius:999px;" id="focus-slots-counter">
-              0 / 24 Slots
+              0 / 29 Slots
             </div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:0.85rem;">
             <div>
               <div style="font-size:0.75rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Time Completed</div>
               <div style="font-size:2.2rem; font-weight:900; line-height:1.1;">
-                <span id="focus-time-completed">0m</span> <span style="font-size:1.1rem; color:var(--text-muted); font-weight:700;">/ 10h</span>
+                <span id="focus-time-completed">0m</span> <span style="font-size:1.1rem; color:var(--text-muted); font-weight:700;">/ 12h</span>
               </div>
             </div>
             <div style="text-align:right;">
@@ -1338,9 +1338,9 @@
           </div>
         </div>
 
-        <!-- 24 Sitting Slots Grid (25m each = 10 Hours Total) -->
+        <!-- 29 Sitting Slots Grid (25m each = 12 Hours Target) -->
         <div style="font-size:0.85rem; font-weight:900; color:var(--text-muted); margin-bottom:0.75rem; text-transform:uppercase; display:flex; justify-content:space-between;">
-          <span>Sitting Slots (24 Total)</span>
+          <span>Sitting Slots (29 Total • 12 Hours)</span>
           <span style="font-size:0.75rem;">Tap Slot to Tick</span>
         </div>
         <div class="slots-grid" id="focus-slots-grid"></div>
@@ -1500,7 +1500,7 @@
     ];
 
     // --- APPLICATION STATE ---
-    const STORAGE_KEY = "dilip_study_suite_final_release_v6";
+    const STORAGE_KEY = "my_target_tracker_v7";
     let state = {
       theme: "dark",
       activeTab: "today",
@@ -1546,8 +1546,10 @@
       if (!state.monthlyMap || Object.keys(state.monthlyMap).length === 0) {
         state.monthlyMap = JSON.parse(JSON.stringify(DEFAULT_MONTHS_DATA));
       }
-      if (!state.focusSlotsMap[state.focusDateKey]) {
-        state.focusSlotsMap[state.focusDateKey] = new Array(24).fill(false);
+      if (!state.focusSlotsMap[state.focusDateKey] || state.focusSlotsMap[state.focusDateKey].length < 29) {
+        const existing = state.focusSlotsMap[state.focusDateKey] || [];
+        while (existing.length < 29) existing.push(false);
+        state.focusSlotsMap[state.focusDateKey] = existing;
       }
     }
 
@@ -2371,10 +2373,12 @@
         this.renderMonthly();
       },
 
-      // --- FOCUS (SITTING POWER) METHODS ---
+      // --- FOCUS (SITTING POWER - 12 HOURS TARGET) ---
       renderFocus: function() {
-        if (!state.focusSlotsMap[state.focusDateKey]) {
-          state.focusSlotsMap[state.focusDateKey] = new Array(24).fill(false);
+        if (!state.focusSlotsMap[state.focusDateKey] || state.focusSlotsMap[state.focusDateKey].length < 29) {
+          const existing = state.focusSlotsMap[state.focusDateKey] || [];
+          while (existing.length < 29) existing.push(false);
+          state.focusSlotsMap[state.focusDateKey] = existing;
         }
         const slots = state.focusSlotsMap[state.focusDateKey];
         const tickedCount = slots.filter(Boolean).length;
@@ -2382,9 +2386,9 @@
         const hours = Math.floor(totalMinutes / 60);
         const mins = totalMinutes % 60;
         const timeStr = hours > 0 ? (mins > 0 ? `${hours}h ${mins}m` : `${hours}h`) : `${mins}m`;
-        const percentage = Math.round((tickedCount / 24) * 100);
+        const percentage = Math.min(100, Math.round((tickedCount / 29) * 100));
 
-        document.getElementById('focus-slots-counter').innerText = `${tickedCount} / 24 Slots`;
+        document.getElementById('focus-slots-counter').innerText = `${tickedCount} / 29 Slots`;
         document.getElementById('focus-time-completed').innerText = timeStr;
         document.getElementById('focus-percentage-label').innerText = `${percentage}%`;
         document.getElementById('focus-progress-fill').style.width = `${percentage}%`;
@@ -2394,13 +2398,13 @@
         const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const formattedFocusDate = `${shortDays[fDate.getDay()]}, ${MONTH_SHORT[fDate.getMonth()]} ${fDate.getDate()}, ${fDate.getFullYear()}`;
 
-        document.getElementById('focus-subtitle-date').innerText = `${formattedFocusDate} • 25m Slots (10 Hours Target)`;
+        document.getElementById('focus-subtitle-date').innerText = `${formattedFocusDate} • 25m Slots (12 Hours Target)`;
         document.getElementById('focus-display-date-label').innerText = `${formattedFocusDate} ▼`;
 
         const gridEl = document.getElementById('focus-slots-grid');
         gridEl.innerHTML = '';
 
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < 29; i++) {
           const isTicked = slots[i];
           const slotNum = i + 1;
           const cumMin = slotNum * 25;
