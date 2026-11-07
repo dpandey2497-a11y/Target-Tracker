@@ -33,7 +33,7 @@
       --blue-text: #1d4ed8;
       --slate-tag-bg: #f1f5f9;
       --slate-tag-text: #475569;
-      --nav-bg: rgba(255, 255, 255, 0.94);
+      --nav-bg: rgba(255, 255, 255, 0.96);
       --nav-border: #e2e8f0;
       --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
       --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -67,7 +67,7 @@
       --blue-text: #93c5fd;
       --slate-tag-bg: #0f172a;
       --slate-tag-text: #cbd5e1;
-      --nav-bg: rgba(15, 23, 42, 0.94);
+      --nav-bg: rgba(15, 23, 42, 0.96);
       --nav-border: #1e293b;
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.5);
@@ -81,10 +81,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Custom Modern Slim Scrollbars for Windows & Mac */
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
@@ -92,9 +91,6 @@
     ::-webkit-scrollbar-thumb {
       background: var(--border);
       border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
     }
 
     body {
@@ -108,15 +104,14 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* DESKTOP & TABLET CONTAINER CONSTRAINT */
     .app-container {
       width: 100%;
-      max-width: 1180px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 0.85rem;
     }
 
-    /* HEADER */
+    /* HEADER - CLEAN & ZERO OVERLAP */
     header {
       width: 100%;
       background: var(--card-bg);
@@ -131,31 +126,32 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.85rem 0.5rem;
-      gap: 0.75rem;
+      padding: 0.75rem 0.25rem;
+      gap: 0.5rem;
     }
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       min-width: 0;
+      flex: 1;
     }
     .brand-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #10b981, #059669);
       color: #ffffff;
       font-weight: 900;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35);
       flex-shrink: 0;
     }
     .brand-title {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 900;
       letter-spacing: -0.02em;
       white-space: nowrap;
@@ -163,107 +159,103 @@
       text-overflow: ellipsis;
     }
     .brand-sub {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--green);
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .brand-sub::before {
       content: '';
       display: inline-block;
-      width: 6.5px;
-      height: 6.5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background-color: var(--green);
+      flex-shrink: 0;
     }
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.35rem;
       flex-shrink: 0;
     }
     .icon-btn {
       background: var(--card-sub);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.5rem 0.75rem;
+      padding: 0.45rem 0.65rem;
       border-radius: var(--radius-sm);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       transition: all 0.15s ease;
       touch-action: manipulation;
     }
     .icon-btn:hover {
       border-color: var(--border-focus);
       background: var(--border);
-      transform: translateY(-1px);
+    }
+    @media (max-width: 520px) {
+      .btn-label { display: none; }
+      .icon-btn { padding: 0.45rem 0.55rem; font-size: 0.85rem; }
+      .brand-sub { display: none; }
     }
 
     /* MAIN VIEWPORT */
     main {
       flex: 1;
       width: 100%;
-      padding-top: 1.25rem;
-      padding-bottom: 7.5rem;
-    }
-
-    @media (min-width: 900px) {
-      main {
-        padding-bottom: 7rem;
-      }
+      padding-top: 1rem;
+      padding-bottom: 6.5rem;
     }
 
     .card {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.35rem;
+      padding: 1.15rem;
       box-shadow: var(--shadow);
-      margin-bottom: 1.25rem;
-      transition: box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .card:hover {
-      box-shadow: var(--shadow-hover);
+      margin-bottom: 1.15rem;
     }
 
-    /* TODAY CALENDAR BAR */
+    /* CALENDAR BAR */
     .calendar-bar-wrapper {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1rem 1.15rem;
-      margin-bottom: 1.25rem;
+      padding: 0.95rem 1rem;
+      margin-bottom: 1.15rem;
       box-shadow: var(--shadow);
     }
     .calendar-bar-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.85rem;
     }
     .calendar-month-year {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 900;
-      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
     .calendar-nav-group {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.35rem;
     }
     .cal-nav-btn {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: var(--radius-sm);
       background: var(--card-sub);
       border: 1px solid var(--border);
@@ -274,66 +266,51 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s ease;
-    }
-    .cal-nav-btn:hover {
-      background: var(--border);
-      border-color: var(--border-focus);
     }
     .cal-today-btn {
-      padding: 0.4rem 0.8rem;
+      padding: 0.35rem 0.65rem;
       border-radius: var(--radius-sm);
       background: var(--card-sub);
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 800;
       cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .cal-today-btn:hover {
-      background: var(--border);
-      border-color: var(--border-focus);
     }
 
     .date-strip {
       display: flex;
-      gap: 0.65rem;
+      gap: 0.55rem;
       overflow-x: auto;
       padding: 0.2rem 0.1rem 0.4rem 0.1rem;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
     .date-strip::-webkit-scrollbar { display: none; }
     .date-pill {
       flex: 1;
-      min-width: 60px;
+      min-width: 54px;
       background: var(--card-sub);
       border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 0.8rem 0.35rem 0.75rem 0.35rem;
+      border-radius: 14px;
+      padding: 0.7rem 0.25rem 0.65rem 0.25rem;
       text-align: center;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.25rem;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 0.2rem;
       flex-shrink: 0;
       user-select: none;
     }
-    .date-pill:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-focus);
-    }
     .date-pill .day-name {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: var(--text-muted);
-      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
     .date-pill .day-num {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 900;
       line-height: 1.1;
     }
@@ -342,14 +319,12 @@
       height: 5px;
       border-radius: 50%;
       background-color: var(--green);
-      margin-top: 0.15rem;
     }
     .date-pill.active {
       background: linear-gradient(135deg, #10b981, #059669);
       border-color: #059669;
       color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.38);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.38);
     }
     .date-pill.active .day-name {
       color: rgba(255, 255, 255, 0.9);
@@ -362,20 +337,12 @@
     .hero-stat-card {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    @media (max-width: 540px) {
-      .hero-stat-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 1rem;
-      }
+      gap: 1.25rem;
+      margin-bottom: 1.15rem;
     }
     .circle-progress-box {
-      width: 95px;
-      height: 95px;
+      width: 88px;
+      height: 88px;
       position: relative;
       flex-shrink: 0;
       display: flex;
@@ -403,67 +370,69 @@
     }
     .circle-text {
       position: absolute;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 900;
     }
 
-    /* STATS 4-TILES GRID (Responsive for Mobile / Tablet / Laptop) */
     .stats-4grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      margin-bottom: 1.25rem;
+      gap: 0.75rem;
+      margin-bottom: 1.15rem;
     }
     @media (max-width: 768px) {
       .stats-4grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: 0.65rem;
       }
     }
     .stat-tile {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 0.95rem;
+      border-radius: 14px;
+      padding: 0.85rem;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-      transition: transform 0.15s ease;
-    }
-    .stat-tile:hover {
-      transform: translateY(-2px);
+      gap: 0.15rem;
     }
     .stat-tile-title {
-      font-size: 0.74rem;
+      font-size: 0.7rem;
       font-weight: 800;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.03em;
     }
     .stat-tile-val {
-      font-size: 1.55rem;
+      font-size: 1.45rem;
       font-weight: 900;
-      line-height: 1.2;
+      line-height: 1.15;
     }
     .stat-tile-sub {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--text-muted);
       font-weight: 600;
     }
 
-    /* TASK ROWS */
+    /* --- RESPONSIVE TASK CARD ROWS (FIXED VERTICAL LETTER CRUSH) --- */
     .task-card-row {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 0.85rem 1rem;
+      padding: 0.85rem 0.95rem;
       margin-bottom: 0.65rem;
       display: flex;
-      align-items: center;
-      gap: 0.85rem;
+      flex-direction: column;
+      gap: 0.55rem;
       cursor: pointer;
       transition: all 0.15s ease;
       touch-action: manipulation;
+    }
+    @media (min-width: 720px) {
+      .task-card-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.85rem;
+      }
     }
     .task-card-row:hover {
       border-color: var(--border-focus);
@@ -486,6 +455,14 @@
       color: var(--text-muted);
     }
 
+    .task-main-col {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      min-width: 0;
+      flex: 1;
+    }
     .task-check-box {
       width: 24px;
       height: 24px;
@@ -497,7 +474,7 @@
       flex-shrink: 0;
       transition: all 0.2s ease;
       background: transparent;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
     }
     .task-check-box.state-completed {
@@ -515,27 +492,40 @@
 
     .task-text {
       flex: 1;
+      min-width: 0;
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--text);
-      word-break: break-word;
+      line-height: 1.35;
+      word-break: normal;
+      overflow-wrap: break-word;
     }
 
-    /* BADGES */
+    .task-meta-col {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.45rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 719px) {
+      .task-meta-col {
+        padding-left: 2rem;
+        justify-content: flex-start;
+      }
+    }
+
     .badge-pill {
-      padding: 0.32rem 0.65rem;
-      border-radius: 8px;
-      font-size: 0.72rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 7px;
+      font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.03em;
       cursor: pointer;
       user-select: none;
-      transition: transform 0.1s ease;
       white-space: nowrap;
-    }
-    .badge-pill:active {
-      transform: scale(0.92);
     }
     .badge-pill.priority-med {
       background: var(--amber-bg);
@@ -568,72 +558,10 @@
       border: 1px solid var(--rose);
     }
 
-    .row-del-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 16px;
-      cursor: pointer;
-      padding: 0.25rem 0.45rem;
-      border-radius: 6px;
-      touch-action: manipulation;
-    }
-    .row-del-btn:hover {
-      color: var(--rose);
-      background: var(--rose-bg);
-    }
-
-    /* INLINE INPUT BAR */
-    .add-form-inline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.15rem;
-    }
-    .input-field {
-      flex: 1 1 200px;
-      background: var(--card-sub);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text);
-      outline: none;
-      min-width: 140px;
-    }
-    .input-field:focus { border-color: var(--border-focus); }
-    .priority-select-el {
-      background: var(--card-sub);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem 0.75rem;
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--text);
-      outline: none;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .priority-select-el:focus { border-color: var(--border-focus); }
-    .btn-submit {
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      padding: 0.75rem 1.25rem;
-      font-size: 0.9rem;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
-      touch-action: manipulation;
-    }
-
     .freq-badge {
       font-size: 0.65rem;
       font-weight: 800;
-      padding: 0.2rem 0.45rem;
+      padding: 0.18rem 0.45rem;
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -654,6 +582,65 @@
       border: 1px solid rgba(99, 102, 241, 0.3);
     }
 
+    .row-del-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 15px;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      margin-left: auto;
+    }
+    .row-del-btn:hover {
+      color: var(--rose);
+      background: var(--rose-bg);
+    }
+
+    /* INLINE INPUT BAR */
+    .add-form-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+    .input-field {
+      flex: 1 1 180px;
+      background: var(--card-sub);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      outline: none;
+      min-width: 140px;
+    }
+    .input-field:focus { border-color: var(--border-focus); }
+    .priority-select-el {
+      background: var(--card-sub);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.7rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.7rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
+    }
+
     /* WEEKLY GROUPS */
     .weekly-header-bar {
       display: flex;
@@ -664,19 +651,18 @@
       flex-wrap: wrap;
     }
     .weekly-title-big {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 900;
-      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
     .sub-group-card {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: 18px;
-      padding: 1.2rem;
-      margin-bottom: 1.25rem;
+      padding: 1.15rem;
+      margin-bottom: 1.15rem;
       box-shadow: var(--shadow);
     }
     .sub-group-header {
@@ -707,8 +693,8 @@
       border-color: var(--green);
     }
     .btn-plus-inline {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--primary), var(--primary-hover));
       color: #fff;
@@ -726,8 +712,8 @@
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.15rem;
-      margin-bottom: 1.25rem;
+      padding: 1.1rem;
+      margin-bottom: 1.15rem;
     }
     .week-pills-row {
       display: flex;
@@ -742,9 +728,9 @@
       background: var(--card-sub);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.5rem 0.95rem;
+      padding: 0.48rem 0.9rem;
       border-radius: 12px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
@@ -757,14 +743,14 @@
     .dates-filter-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.6rem;
       align-items: center;
     }
     .date-input-wrap {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--text-muted);
     }
@@ -772,9 +758,9 @@
       background: var(--card-sub);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.4rem 0.65rem;
+      padding: 0.38rem 0.6rem;
       border-radius: 8px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       outline: none;
     }
@@ -784,35 +770,35 @@
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      margin-bottom: 1.25rem;
+      padding: 1.15rem;
+      margin-bottom: 1.15rem;
       box-shadow: var(--shadow);
     }
     .month-pills-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.95rem;
-      margin-bottom: 0.35rem;
+      gap: 0.85rem;
+      margin-bottom: 0.25rem;
     }
     @media (max-width: 768px) {
       .month-pills-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
+        gap: 0.65rem;
       }
     }
     @media (max-width: 440px) {
       .month-pills-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.6rem;
+        gap: 0.55rem;
       }
     }
     .month-pill-btn {
       background: var(--card-sub);
       border: 1.5px solid var(--border);
       color: var(--text);
-      padding: 1.05rem 0.75rem;
+      padding: 0.95rem 0.65rem;
       border-radius: 16px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 900;
       cursor: pointer;
       text-align: center;
@@ -820,18 +806,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.25rem;
+      gap: 0.2rem;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
     }
     .month-pill-btn .m-num {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
       color: var(--text-muted);
       letter-spacing: 0.06em;
     }
     .month-pill-btn .m-name {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 900;
       letter-spacing: 0.02em;
     }
@@ -844,7 +830,7 @@
       border-color: #059669;
       color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.42);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.42);
     }
     .month-pill-btn.active .m-num {
       color: rgba(255, 255, 255, 0.88);
@@ -856,11 +842,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.15rem;
     }
     .nav-arrow-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       background: var(--card-bg);
       border: 1.5px solid var(--border);
@@ -870,11 +856,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
     }
     .date-cal-btn {
       flex: 1;
-      height: 44px;
+      height: 42px;
       border-radius: 12px;
       background: var(--card-bg);
       border: 1.5px solid var(--border);
@@ -884,15 +870,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       position: relative;
     }
 
-    /* SLOTS GRID (Responsive 4 cols on PC / 3 cols on Tablet / 2 cols on Phone) */
     .slots-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
+      gap: 0.8rem;
     }
     @media (max-width: 900px) {
       .slots-grid {
@@ -902,14 +887,14 @@
     @media (max-width: 580px) {
       .slots-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.7rem;
+        gap: 0.65rem;
       }
     }
     .slot-card {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: 16px;
-      padding: 0.95rem 0.85rem;
+      padding: 0.9rem 0.8rem;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -941,8 +926,8 @@
       font-weight: 800;
     }
     .slot-radio {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border: 2px dashed #94a3b8;
       border-radius: 50%;
       display: flex;
@@ -953,16 +938,16 @@
       border: 2px solid #059669;
       background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
     }
     .slot-name {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 800;
       color: var(--text);
     }
     .slot-cum-time {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       display: flex;
       align-items: center;
@@ -979,7 +964,7 @@
       border-top: 1.5px solid var(--nav-border);
       display: flex;
       justify-content: center;
-      padding: 0.55rem 0.5rem calc(0.65rem + env(safe-area-inset-bottom)) 0.5rem;
+      padding: 0.5rem 0.5rem calc(0.55rem + env(safe-area-inset-bottom)) 0.5rem;
       z-index: 50;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -990,21 +975,21 @@
       max-width: 600px;
       display: flex;
       justify-content: space-around;
-      gap: 0.5rem;
+      gap: 0.35rem;
     }
     .nav-tab-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.22rem;
+      gap: 0.2rem;
       background: none;
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
-      padding: 0.4rem 0.85rem;
-      border-radius: 14px;
+      padding: 0.35rem 0.65rem;
+      border-radius: 12px;
       transition: all 0.2s ease;
       flex: 1;
       touch-action: manipulation;
@@ -1015,9 +1000,6 @@
       stroke: currentColor;
       fill: none;
       stroke-width: 2.2;
-    }
-    .nav-tab-item:hover {
-      color: var(--text);
     }
     .nav-tab-item.active {
       color: var(--green);
@@ -1033,17 +1015,21 @@
       <div class="header-inner">
         <div class="brand-group">
           <div class="brand-avatar">D</div>
-          <div>
+          <div style="min-width:0; overflow:hidden;">
             <div class="brand-title">Dilip's Study Suite</div>
             <div class="brand-sub">Offline-First • Local Storage Synced</div>
           </div>
         </div>
         <div class="header-actions">
           <button class="icon-btn" onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">
-            <span id="theme-icon">🌙</span> <span style="display:inline-block;">Theme</span>
+            <span id="theme-icon">🌙</span> <span class="btn-label">Theme</span>
           </button>
-          <button class="icon-btn" onclick="app.toggleFullscreen()" title="Fullscreen Mode">⛶ Full</button>
-          <button class="icon-btn" onclick="app.resetAllData()" title="Reset to Defaults">↺ Reset</button>
+          <button class="icon-btn" onclick="app.toggleFullscreen()" title="Fullscreen Mode">
+            <span>⛶</span> <span class="btn-label">Full</span>
+          </button>
+          <button class="icon-btn" onclick="app.resetAllData()" title="Reset to Defaults">
+            <span>↺</span> <span class="btn-label">Reset</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1055,8 +1041,8 @@
 
       <!-- TAB 1: TODAY ROUTINE & CHECKLIST -->
       <div id="tab-today" class="tab-pane">
-        <div style="font-size:0.8rem; font-weight:800; color:var(--green); text-transform:uppercase; margin-bottom:0.25rem;">Routine & Daily Targets</div>
-        <h2 id="today-heading-date" style="font-size:1.6rem; font-weight:900; margin-bottom:1.15rem;">Thursday, 5 November 2026</h2>
+        <div style="font-size:0.75rem; font-weight:800; color:var(--green); text-transform:uppercase; margin-bottom:0.2rem;">Routine & Daily Targets</div>
+        <h2 id="today-heading-date" style="font-size:1.45rem; font-weight:900; margin-bottom:1rem; word-break:normal;">Thursday, 5 November 2026</h2>
 
         <!-- MODERN MINIMALIST CALENDAR BAR -->
         <div class="calendar-bar-wrapper">
@@ -1084,9 +1070,9 @@
             <div class="circle-text" id="today-circle-val">0%</div>
           </div>
           <div>
-            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">Daily Target Completion</div>
-            <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.4;" id="today-stat-sub">0 of 14 tasks completed for this date.</div>
-            <div style="font-size:0.82rem; color:var(--green); font-weight:800; margin-top:0.4rem;" id="today-streak-line">🔥 Current Streak: 0 days</div>
+            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.25rem;">Daily Target Completion</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;" id="today-stat-sub">0 of 14 tasks completed for this date.</div>
+            <div style="font-size:0.8rem; color:var(--green); font-weight:800; margin-top:0.35rem;" id="today-streak-line">🔥 Current Streak: 0 days</div>
           </div>
         </div>
 
@@ -1119,7 +1105,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem;">
             <div>
               <h3 style="font-size:1.15rem; font-weight:900;">Today's Habit Checklist</h3>
-              <p style="font-size:0.75rem; color:var(--text-muted);">Tap any task row to cycle: Pending ➔ Completed ➔ Missed ➔ Pending</p>
+              <p style="font-size:0.75rem; color:var(--text-muted);">Tap row to cycle: Pending ➔ Completed ➔ Missed ➔ Pending</p>
             </div>
           </div>
 
@@ -1147,7 +1133,7 @@
       <div id="tab-weekly" class="tab-pane" style="display:none;">
         <div class="week-controls-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-            <div style="font-size:0.85rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Select Week Plan</div>
+            <div style="font-size:0.82rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Select Week Plan</div>
             <button class="icon-btn" onclick="app.addNewWeekPlan()">+ New Week</button>
           </div>
           <div class="week-pills-row" id="weekly-pills-row"></div>
@@ -1160,8 +1146,8 @@
               <span>TO:</span>
               <input type="date" id="week-date-to" onchange="app.updateWeekDates()">
             </div>
-            <button class="icon-btn" style="padding:0.4rem 0.65rem;" onclick="app.setWeekPreset('sun-sat')">Sun → Sat</button>
-            <button class="icon-btn" style="padding:0.4rem 0.65rem;" onclick="app.setWeekPreset('next7')">Next 7 Days</button>
+            <button class="icon-btn" style="padding:0.35rem 0.6rem;" onclick="app.setWeekPreset('sun-sat')">Sun → Sat</button>
+            <button class="icon-btn" style="padding:0.35rem 0.6rem;" onclick="app.setWeekPreset('next7')">Next 7 Days</button>
           </div>
         </div>
 
@@ -1175,9 +1161,9 @@
             <div class="circle-text" id="weekly-circle-val">0%</div>
           </div>
           <div>
-            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">Weekly Target Completion</div>
-            <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.4;" id="weekly-stat-sub">0 of 0 weekly tasks completed.</div>
-            <div style="font-size:0.82rem; color:var(--green); font-weight:800; margin-top:0.4rem;" id="weekly-completion-status">🎯 Stay consistent with weekly study targets!</div>
+            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.25rem;">Weekly Target Completion</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;" id="weekly-stat-sub">0 of 0 weekly tasks completed.</div>
+            <div style="font-size:0.8rem; color:var(--green); font-weight:800; margin-top:0.35rem;" id="weekly-completion-status">🎯 Stay consistent with weekly study targets!</div>
           </div>
         </div>
 
@@ -1216,14 +1202,14 @@
       <!-- TAB 3: MONTHLY PLANNER -->
       <div id="tab-monthly" class="tab-pane" style="display:none;">
         <div class="month-controls-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.15rem; flex-wrap:wrap; gap:0.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
             <div>
               <div style="font-size:0.75rem; font-weight:800; color:var(--green); text-transform:uppercase;">Long-Term Roadmap</div>
-              <h2 id="monthly-heading-title" style="font-size:1.5rem; font-weight:900;">November 2026</h2>
+              <h2 id="monthly-heading-title" style="font-size:1.45rem; font-weight:900;">November 2026</h2>
             </div>
-            <div style="display:flex; align-items:center; gap:0.45rem;">
+            <div style="display:flex; align-items:center; gap:0.4rem;">
               <button class="cal-nav-btn" onclick="app.shiftMonthlyYear(-1)" title="Previous Year">❮</button>
-              <span id="monthly-year-label" style="font-weight:900; font-size:1.1rem; padding:0 0.45rem;">2026</span>
+              <span id="monthly-year-label" style="font-weight:900; font-size:1.05rem; padding:0 0.35rem;">2026</span>
               <button class="cal-nav-btn" onclick="app.shiftMonthlyYear(1)" title="Next Year">❯</button>
               <button class="cal-today-btn" onclick="app.jumpMonthlyToCurrent()">Current Month</button>
             </div>
@@ -1243,9 +1229,9 @@
             <div class="circle-text" id="monthly-circle-val">0%</div>
           </div>
           <div>
-            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">Monthly Target Completion</div>
-            <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.4;" id="monthly-stat-sub">0 of 0 monthly milestones achieved.</div>
-            <div style="font-size:0.82rem; color:var(--green); font-weight:800; margin-top:0.4rem;" id="monthly-completion-status">🏆 Complete your syllabus milestones on schedule!</div>
+            <div style="font-size:1.15rem; font-weight:900; margin-bottom:0.25rem;">Monthly Target Completion</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;" id="monthly-stat-sub">0 of 0 monthly milestones achieved.</div>
+            <div style="font-size:0.8rem; color:var(--green); font-weight:800; margin-top:0.35rem;" id="monthly-completion-status">🏆 Complete your syllabus milestones on schedule!</div>
           </div>
         </div>
 
@@ -1301,7 +1287,7 @@
       <div id="tab-focus" class="tab-pane" style="display:none;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
           <div>
-            <h2 style="font-size:1.5rem; font-weight:900; display:flex; align-items:center; gap:0.4rem;">
+            <h2 style="font-size:1.45rem; font-weight:900; display:flex; align-items:center; gap:0.4rem;">
               <span>⚡</span> Sitting Power
             </h2>
             <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;" id="focus-subtitle-date">
@@ -1514,7 +1500,7 @@
     ];
 
     // --- APPLICATION STATE ---
-    const STORAGE_KEY = "dilip_study_suite_final_release_v5";
+    const STORAGE_KEY = "dilip_study_suite_final_release_v6";
     let state = {
       theme: "dark",
       activeTab: "today",
@@ -1595,7 +1581,6 @@
         this.renderMonthly();
         this.renderFocus();
 
-        // Android virtual keyboard auto-scroll
         document.addEventListener('focusin', function(e) {
           if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) {
             setTimeout(() => {
@@ -1645,7 +1630,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
 
-      // --- TODAY TAB METHODS ---
       getFormattedDateKey: function(d) {
         const y = d.getFullYear();
         const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -1810,9 +1794,11 @@
           row.onclick = () => app.cycleTodayTaskStatus(task.id);
 
           row.innerHTML = `
-            <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
-            <div class="task-text">${task.title}</div>
-            <div style="display:flex; align-items:center; gap:0.45rem; flex-shrink:0;">
+            <div class="task-main-col">
+              <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
+              <div class="task-text">${task.title}</div>
+            </div>
+            <div class="task-meta-col">
               <span class="freq-badge ${fClass}">${freq}</span>
               <span class="badge-pill ${pClass}" title="Click to cycle Priority" onclick="event.stopPropagation(); app.cycleTodayTaskPriority('${task.id}')">${priority}</span>
               <span class="badge-pill ${badgeStatusClass}">${status.toUpperCase()}</span>
@@ -1990,9 +1976,11 @@
 
               return `
                 <div class="task-card-row ${rowStateClass}" onclick="app.cycleWeeklyTaskStatus('${g.id}', '${t.id}')">
-                  <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
-                  <div class="task-text">${t.text}</div>
-                  <div style="display:flex; align-items:center; gap:0.45rem; flex-shrink:0;">
+                  <div class="task-main-col">
+                    <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
+                    <div class="task-text">${t.text}</div>
+                  </div>
+                  <div class="task-meta-col">
                     <span class="badge-pill ${pClass}" title="Click to cycle Priority" onclick="event.stopPropagation(); app.cycleWeeklyTaskPriority('${g.id}', '${t.id}')">${priority}</span>
                     <span class="badge-pill ${badgeStatusClass}">${status.toUpperCase()}</span>
                     <button class="row-del-btn" onclick="event.stopPropagation(); app.deleteWeeklyTask('${g.id}', '${t.id}')">✕</button>
@@ -2225,7 +2213,6 @@
           pillsContainer.appendChild(btn);
         });
 
-        // Fetch tasks for the current month
         if (!state.monthlyMap[monthKey]) {
           state.monthlyMap[monthKey] = [];
         }
@@ -2236,7 +2223,6 @@
         const pending = tasks.filter(t => !t.status || t.status === 'Pending').length;
         const perc = total > 0 ? Math.round((done / total) * 100) : 0;
 
-        // Circular Gauge
         document.getElementById('monthly-circle-val').innerText = `${perc}%`;
         const offset = 238.7 - (238.7 * perc) / 100;
         document.getElementById('monthly-circle-fill').style.strokeDashoffset = offset;
@@ -2245,18 +2231,16 @@
           ? '🎉 All monthly targets achieved!'
           : '🏆 Complete your syllabus milestones on schedule!';
 
-        // 4 Stats Tiles
         document.getElementById('stat-monthly-total').innerText = total;
         document.getElementById('stat-monthly-done').innerText = done;
         document.getElementById('stat-monthly-pending').innerText = pending;
         document.getElementById('stat-monthly-missed').innerText = missed;
 
-        // Render Task List
         const listEl = document.getElementById('monthly-tasks-list');
         listEl.innerHTML = '';
 
         if (tasks.length === 0) {
-          listEl.innerHTML = `<div style="font-size:0.88rem; color:var(--text-muted); padding:1.5rem 0; text-align:center;">No targets set for ${MONTH_NAMES[monthIdx]} ${year}. Add your syllabus goals below!</div>`;
+          listEl.innerHTML = `<div style="font-size:0.85rem; color:var(--text-muted); padding:1.2rem 0; text-align:center;">No targets set for ${MONTH_NAMES[monthIdx]} ${year}. Add your syllabus goals below!</div>`;
         } else {
           tasks.forEach(task => {
             const status = task.status || 'Pending';
@@ -2285,9 +2269,11 @@
             row.onclick = () => app.cycleMonthlyTaskStatus(task.id);
 
             row.innerHTML = `
-              <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
-              <div class="task-text">${task.title}</div>
-              <div style="display:flex; align-items:center; gap:0.45rem; flex-shrink:0;">
+              <div class="task-main-col">
+                <div class="task-check-box ${checkStateClass}">${checkIcon}</div>
+                <div class="task-text">${task.title}</div>
+              </div>
+              <div class="task-meta-col">
                 <span class="badge-pill ${pClass}" title="Click to cycle Priority" onclick="event.stopPropagation(); app.cycleMonthlyTaskPriority('${task.id}')">${priority}</span>
                 <span class="badge-pill ${badgeStatusClass}">${status.toUpperCase()}</span>
                 <button class="row-del-btn" onclick="event.stopPropagation(); app.deleteMonthlyTask('${task.id}')">✕</button>
