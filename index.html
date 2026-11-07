@@ -954,6 +954,26 @@
       gap: 0.25rem;
     }
 
+    /* TARGET HIGHLIGHT FOR 28TH SLOT */
+    .slot-card.target-milestone {
+      border: 2px solid #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      position: relative;
+    }
+    .slot-target-tag {
+      font-size: 0.65rem;
+      font-weight: 900;
+      background: #10b981;
+      color: #ffffff;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     /* --- 7-DAY SITTING POWER RECORD GRAPH --- */
     .history-chart-card {
       background: var(--card-bg);
@@ -1039,123 +1059,153 @@
       margin-top: 0.25rem;
     }
 
-    /* --- PREMIUM AESTHETIC FOCUS TIMER --- */
+    /* --- HORIZONTAL WIDE AESTHETIC FOCUS TIMER (IMAGE 8077 INSPIRED) --- */
     .timer-suite-card {
       background: var(--card-bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.4rem;
+      padding: 1.35rem;
       margin-top: 1.25rem;
       margin-bottom: 1.25rem;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
-    .timer-suite-card::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
-      pointer-events: none;
+    .timer-header-center {
+      text-align: center;
+      margin-bottom: 1.1rem;
     }
-    .timer-ring-box {
-      width: 220px;
-      height: 220px;
-      margin: 1rem auto 1.3rem auto;
-      position: relative;
-      display: flex;
-      flex-direction: column;
+    .timer-header-title {
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
       align-items: center;
+      gap: 0.35rem;
+    }
+    .timer-header-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+    .timer-modes-strip {
+      display: flex;
       justify-content: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.3rem 0.2rem 0.6rem 0.2rem;
+      margin-bottom: 1.1rem;
+      scrollbar-width: none;
     }
-    .timer-ring-box svg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
+    .timer-modes-strip::-webkit-scrollbar { display: none; }
+    .timer-preset-chip {
+      background: var(--card-sub);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      padding: 0.52rem 0.95rem;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
     }
-    .timer-ring-bg {
-      fill: none;
-      stroke: var(--card-sub);
-      stroke-width: 8;
+    .timer-preset-chip:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
     }
-    .timer-ring-glow {
-      fill: none;
-      stroke: #10b981;
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-dasharray: 615.75;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 0.8s linear, stroke 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+    .timer-preset-chip.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #059669;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
     }
-    .timer-digital-display {
-      font-size: 3.1rem;
+
+    /* WIDE HORIZONTAL DIGITAL DISPLAY */
+    .timer-horizontal-display-box {
+      background: var(--card-sub);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .timer-horizontal-digits {
+      font-size: clamp(3.2rem, 9vw, 5.2rem);
       font-weight: 900;
       letter-spacing: -0.03em;
       line-height: 1;
       font-variant-numeric: tabular-nums;
       color: var(--text);
-      z-index: 2;
+      text-shadow: 0 2px 14px rgba(16, 185, 129, 0.25);
     }
-    .timer-status-badge {
-      font-size: 0.74rem;
+    .timer-horizontal-badge {
+      display: inline-block;
+      font-size: 0.76rem;
       font-weight: 900;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
       color: var(--green);
-      margin-top: 0.4rem;
-      z-index: 2;
-      background: var(--card-sub);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
+      margin-top: 0.5rem;
+      background: var(--card-bg);
       border: 1px solid var(--border);
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
     }
-    .timer-modes-grid {
+    .timer-horizontal-progress-bar-wrap {
+      width: 100%;
+      height: 10px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 1.2rem;
+      position: relative;
+    }
+    .timer-horizontal-progress-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #10b981, #059669, #34d399);
+      border-radius: 999px;
+      transition: width 0.4s linear;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+    /* HORIZONTAL CONTROLS ROW */
+    .timer-controls-horizontal-row {
       display: flex;
       justify-content: center;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
     }
-    .timer-mode-btn {
+    .btn-timer-step {
       background: var(--card-sub);
       border: 1.5px solid var(--border);
       color: var(--text);
-      padding: 0.5rem 0.85rem;
-      border-radius: 12px;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 800;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
       cursor: pointer;
       transition: all 0.15s ease;
       touch-action: manipulation;
     }
-    .timer-mode-btn:hover {
+    .btn-timer-step:hover {
       border-color: var(--border-focus);
-      transform: translateY(-1px);
     }
-    .timer-mode-btn.active {
-      background: linear-gradient(135deg, #10b981, #059669);
-      border-color: #059669;
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-    }
-    .timer-controls-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.85rem;
-      margin-bottom: 1rem;
-    }
-    .btn-timer-primary {
+    .btn-timer-main-action {
       background: linear-gradient(135deg, #10b981, #059669);
       color: #ffffff;
       border: none;
+      padding: 0.85rem 2.2rem;
       border-radius: 16px;
-      padding: 0.85rem 2rem;
       font-size: 1.05rem;
       font-weight: 900;
       cursor: pointer;
@@ -1166,43 +1216,67 @@
       transition: all 0.15s ease;
       touch-action: manipulation;
     }
-    .btn-timer-primary:hover {
+    .btn-timer-main-action:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
     }
-    .btn-timer-secondary {
+    .btn-timer-reset-icon {
       background: var(--card-sub);
       border: 1.5px solid var(--border);
       color: var(--text);
-      border-radius: 16px;
-      padding: 0.85rem 1.25rem;
-      font-size: 0.95rem;
-      font-weight: 800;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
       cursor: pointer;
       transition: all 0.15s ease;
       touch-action: manipulation;
     }
-    .btn-timer-secondary:hover {
+    .btn-timer-reset-icon:hover {
       border-color: var(--border-focus);
     }
-    .timer-custom-dialog {
+
+    /* FOOTER BAR WITH CUSTOM MINUTES & AUTO-TICK */
+    .timer-footer-dock {
       background: var(--card-sub);
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 0.85rem;
-      display: none;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
-    .timer-toggle-line {
+    .timer-custom-dock-left {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+    .timer-custom-dock-left input {
+      width: 55px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: var(--text);
+      text-align: center;
+      outline: none;
+    }
+    .timer-auto-tick-label {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
       user-select: none;
@@ -1545,7 +1619,7 @@
               <span>⚡</span> Sitting Power
             </h2>
             <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;" id="focus-subtitle-date">
-              Thu, Nov 5, 2026 • 25m Slots (12 Hours Target)
+              Thu, Nov 5, 2026 • 28 Slots (12 Hours Complete Target)
             </div>
           </div>
         </div>
@@ -1588,11 +1662,11 @@
             <div id="focus-progress-fill" style="width:0%; height:100%; background:linear-gradient(90deg, #10b981, #059669); transition:width 0.3s ease;"></div>
           </div>
           <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; font-weight:600;" id="focus-motivate-text">
-            Start your 25-minute table watch timer and tick your first slot!
+            Start your table watch timer and tick your slots to complete 12 hours!
           </div>
         </div>
 
-        <!-- 28 Sitting Slots Grid (25m each = 12 Hours Target) -->
+        <!-- 28 Sitting Slots Grid (Slot 1-27: 25m each, Slot 28: 45m Target) -->
         <div style="font-size:0.85rem; font-weight:900; color:var(--text-muted); margin-bottom:0.75rem; text-transform:uppercase; display:flex; justify-content:space-between;">
           <span>Sitting Slots (28 Total • 12 Hours Target)</span>
           <span style="font-size:0.75rem;">Tap Slot to Tick</span>
@@ -1620,60 +1694,59 @@
           </div>
         </div>
 
-        <!-- COMPONENT 2: PREMIUM AESTHETIC CUSTOMIZABLE FOCUS TIMER -->
+        <!-- COMPONENT 2: HORIZONTAL WIDE AESTHETIC FOCUS TIMER (IMAGE 8077 INSPIRED) -->
         <div class="timer-suite-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <div>
-              <div style="font-size:0.75rem; font-weight:800; color:var(--green); text-transform:uppercase;">Aesthetic Stopwatch & Timer</div>
-              <h3 style="font-size:1.2rem; font-weight:900; display:flex; align-items:center; gap:0.4rem;">
-                <span>⏱</span> Study Focus Timer
-              </h3>
+          <div class="timer-header-center">
+            <div class="timer-header-title">
+              <span>⌛</span> FOCUS STUDY TIMER
             </div>
-            <span id="timer-mode-label" style="font-size:0.75rem; font-weight:800; color:var(--text-muted); background:var(--card-sub); border:1px solid var(--border); padding:0.25rem 0.6rem; border-radius:999px;">
-              25m Pomodoro
-            </span>
+            <div class="timer-header-sub">Deep concentration clock with auto-slot sync</div>
           </div>
 
-          <!-- Glowing Circular Countdown Ring -->
-          <div class="timer-ring-box">
-            <svg viewBox="0 0 220 220">
-              <circle class="timer-ring-bg" cx="110" cy="110" r="98"></circle>
-              <circle class="timer-ring-glow" id="timer-circle-progress" cx="110" cy="110" r="98"></circle>
-            </svg>
-            <div class="timer-digital-display" id="timer-display-time">25:00</div>
-            <div class="timer-status-badge" id="timer-status-badge">READY TO STUDY</div>
+          <!-- Presets Horizontal Strip -->
+          <div class="timer-modes-strip">
+            <button class="timer-preset-chip active" onclick="app.setTimerDuration(25, '25m Focus', this)">25m Focus</button>
+            <button class="timer-preset-chip" onclick="app.setTimerDuration(45, '45m Study (Slot 28)', this)">45m Study</button>
+            <button class="timer-preset-chip" onclick="app.setTimerDuration(60, '60m Deep', this)">60m Deep</button>
+            <button class="timer-preset-chip" onclick="app.setTimerDuration(5, '5m Break', this)">5m Break</button>
+            <button class="timer-preset-chip" onclick="app.setTimerDuration(15, '15m Rest', this)">15m Rest</button>
           </div>
 
-          <!-- Mode / Duration Customization Pills -->
-          <div class="timer-modes-grid">
-            <button class="timer-mode-btn active" onclick="app.setTimerDuration(25, '25m Slot', this)">25m (Slot)</button>
-            <button class="timer-mode-btn" onclick="app.setTimerDuration(45, '45m Deep Work', this)">45m (Deep)</button>
-            <button class="timer-mode-btn" onclick="app.setTimerDuration(60, '60m Power Study', this)">60m (Power)</button>
-            <button class="timer-mode-btn" onclick="app.toggleCustomTimerDialog(this)">⚙ Customize</button>
+          <!-- Wide Horizontal Cockpit Display (No Ring) -->
+          <div class="timer-horizontal-display-box">
+            <div class="timer-horizontal-digits" id="timer-display-time">25:00</div>
+            <div>
+              <span class="timer-horizontal-badge" id="timer-status-badge">READY TO FOCUS</span>
+            </div>
+            <div class="timer-horizontal-progress-bar-wrap">
+              <div class="timer-horizontal-progress-fill" id="timer-horizontal-fill" style="width: 100%;"></div>
+            </div>
           </div>
 
-          <!-- Inline Custom Input Bar -->
-          <div class="timer-custom-dialog" id="timer-custom-dialog">
-            <span style="font-size:0.82rem; font-weight:800;">Set Custom Minutes:</span>
-            <input type="number" id="input-custom-minutes" min="1" max="180" value="30" style="width:70px; background:var(--card-bg); border:1.5px solid var(--border); border-radius:10px; padding:0.4rem 0.5rem; font-weight:900; color:var(--text); text-align:center; outline:none;">
-            <button class="icon-btn" style="padding:0.45rem 0.85rem;" onclick="app.applyCustomTimerMinutes()">Apply</button>
-          </div>
-
-          <!-- Controls: Start, Pause, Reset -->
-          <div class="timer-controls-row">
-            <button class="btn-timer-primary" id="btn-timer-toggle" onclick="app.toggleTimerRun()">
-              <span id="btn-timer-icon">▶</span> <span id="btn-timer-text">Start Focus</span>
+          <!-- Horizontal Controls: -5m | ▶ Start | ↺ Reset | +5m -->
+          <div class="timer-controls-horizontal-row">
+            <button class="btn-timer-step" onclick="app.adjustTimerMinutes(-5)" title="Subtract 5 Minutes">-5m</button>
+            <button class="btn-timer-main-action" id="btn-timer-toggle" onclick="app.toggleTimerRun()">
+              <span id="btn-timer-icon">▶</span> <span id="btn-timer-text">Start</span>
             </button>
-            <button class="btn-timer-secondary" onclick="app.resetTimer()">
-              ↺ Reset
+            <button class="btn-timer-reset-icon" onclick="app.resetTimer()" title="Reset Timer">
+              ↺
             </button>
+            <button class="btn-timer-step" onclick="app.adjustTimerMinutes(5)" title="Add 5 Minutes">+5m</button>
           </div>
 
-          <!-- Auto-tick checkbox -->
-          <label class="timer-toggle-line">
-            <input type="checkbox" id="check-auto-tick" checked style="accent-color:var(--green); width:16px; height:16px;">
-            <span>Auto-tick next available slot when timer finishes</span>
-          </label>
+          <!-- Footer Dock: Custom Minutes Input & Auto-tick checkbox -->
+          <div class="timer-footer-dock">
+            <div class="timer-custom-dock-left">
+              <span>Set Custom:</span>
+              <input type="number" id="input-custom-minutes" min="1" max="180" value="25" onchange="app.applyCustomTimerMinutes()">
+              <span>mins</span>
+            </div>
+            <label class="timer-auto-tick-label">
+              <input type="checkbox" id="check-auto-tick" checked style="accent-color:var(--green); width:16px; height:16px;">
+              <span>Auto-tick slot on complete</span>
+            </label>
+          </div>
         </div>
 
       </div>
@@ -1760,7 +1833,7 @@
       remainingSecs: 25 * 60,
       isRunning: false,
       intervalId: null,
-      modeTitle: "25m Slot"
+      modeTitle: "25m Focus"
     };
 
     function playChimeSound() {
@@ -1860,7 +1933,7 @@
     ];
 
     // --- APPLICATION STATE ---
-    const STORAGE_KEY = "my_target_tracker_v8";
+    const STORAGE_KEY = "my_target_tracker_v9";
     let state = {
       theme: "dark",
       activeTab: "today",
@@ -2734,7 +2807,7 @@
         this.renderMonthly();
       },
 
-      // --- FOCUS (SITTING POWER) METHODS ---
+      // --- FOCUS (SITTING POWER - 12 HOURS TARGET WITH 28 SLOTS) ---
       renderFocus: function() {
         if (!state.focusSlotsMap[state.focusDateKey] || state.focusSlotsMap[state.focusDateKey].length < 28) {
           const existing = state.focusSlotsMap[state.focusDateKey] || [];
@@ -2743,11 +2816,19 @@
         }
         const slots = state.focusSlotsMap[state.focusDateKey];
         const tickedCount = slots.filter(Boolean).length;
-        const totalMinutes = tickedCount * 25;
+
+        // Calculate accurate completed time (Slot 1-27 = 25m each; Slot 28 = 45m)
+        let totalMinutes = 0;
+        for (let i = 0; i < 28; i++) {
+          if (slots[i]) {
+            totalMinutes += (i === 27 ? 45 : 25);
+          }
+        }
         const hours = Math.floor(totalMinutes / 60);
         const mins = totalMinutes % 60;
         const timeStr = hours > 0 ? (mins > 0 ? `${hours}h ${mins}m` : `${hours}h`) : `${mins}m`;
-        const percentage = Math.min(100, Math.round((tickedCount / 28) * 100));
+        // Target is 720 minutes = exactly 12 Hours!
+        const percentage = Math.min(100, Math.round((totalMinutes / 720) * 100));
 
         document.getElementById('focus-slots-counter').innerText = `${tickedCount} / 28 Slots`;
         document.getElementById('focus-time-completed').innerText = timeStr;
@@ -2759,7 +2840,7 @@
         const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const formattedFocusDate = `${shortDays[fDate.getDay()]}, ${MONTH_SHORT[fDate.getMonth()]} ${fDate.getDate()}, ${fDate.getFullYear()}`;
 
-        document.getElementById('focus-subtitle-date').innerText = `${formattedFocusDate} • 25m Slots (12 Hours Target)`;
+        document.getElementById('focus-subtitle-date').innerText = `${formattedFocusDate} • 28 Slots (12 Hours Complete Target)`;
         document.getElementById('focus-display-date-label').innerText = `${formattedFocusDate} ▼`;
 
         const gridEl = document.getElementById('focus-slots-grid');
@@ -2768,22 +2849,27 @@
         for (let i = 0; i < 28; i++) {
           const isTicked = slots[i];
           const slotNum = i + 1;
-          const cumMin = slotNum * 25;
+          const isLastSlot = (i === 27); // 28th slot
+          const slotDuration = isLastSlot ? 45 : 25;
+
+          // Cumulative minutes
+          const cumMin = isLastSlot ? 720 : (slotNum * 25);
           const cH = Math.floor(cumMin / 60);
           const cM = cumMin % 60;
           const cumStr = cH > 0 ? (cM > 0 ? `${cH}h ${cM}m` : `${cH}h 00m`) : `${cM}m`;
 
           const card = document.createElement('div');
-          card.className = `slot-card ${isTicked ? 'ticked' : ''}`;
+          card.className = `slot-card ${isTicked ? 'ticked' : ''} ${isLastSlot ? 'target-milestone' : ''}`;
           card.onclick = () => app.toggleFocusSlot(i);
 
           card.innerHTML = `
             <div class="slot-top-row">
               <span class="slot-idx-badge">${slotNum}</span>
+              ${isLastSlot ? '<span class="slot-target-tag">🎯 TARGET</span>' : ''}
               <div class="slot-radio">${isTicked ? '✓' : ''}</div>
             </div>
-            <div class="slot-name">Slot ${slotNum} <span style="font-size:0.75rem; color:var(--text-muted);">(25m)</span></div>
-            <div class="slot-cum-time">⏱ ${cumStr}</div>
+            <div class="slot-name">${isLastSlot ? '🎯 Target Final Slot' : 'Slot ' + slotNum} <span style="font-size:0.75rem; color:var(--text-muted);">(${slotDuration}m)</span></div>
+            <div class="slot-cum-time">⏱ ${cumStr} ${isLastSlot ? '(12h Complete)' : ''}</div>
           `;
           gridEl.appendChild(card);
         }
@@ -2801,20 +2887,29 @@
         const baseDate = new Date(y, m - 1, d);
         const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-        let totalTickedLast7 = 0;
+        let totalMinsLast7 = 0;
+        let totalSlotsLast7 = 0;
 
         for (let i = 6; i >= 0; i--) {
           const curDate = new Date(baseDate);
           curDate.setDate(baseDate.getDate() - i);
           const key = this.getFormattedDateKey(curDate);
           const daySlots = state.focusSlotsMap[key] || [];
-          const count = daySlots.filter(Boolean).length;
-          totalTickedLast7 += count;
+          
+          let dayMins = 0;
+          let count = 0;
+          for (let s = 0; s < 28; s++) {
+            if (daySlots[s]) {
+              count++;
+              dayMins += (s === 27 ? 45 : 25);
+            }
+          }
+          totalMinsLast7 += dayMins;
+          totalSlotsLast7 += count;
 
           const isCurrentSelected = (key === state.focusDateKey);
-          const minutes = count * 25;
-          const hours = (minutes / 60).toFixed(1);
-          const barHeightPerc = Math.min(100, Math.round((count / 28) * 100));
+          const hours = (dayMins / 60).toFixed(1);
+          const barHeightPerc = Math.min(100, Math.round((dayMins / 720) * 100));
 
           const col = document.createElement('div');
           col.className = `chart-col ${isCurrentSelected ? 'active' : ''}`;
@@ -2835,14 +2930,14 @@
           wrapEl.appendChild(col);
         }
 
-        const avgHours = ((totalTickedLast7 * 25) / 60 / 7).toFixed(1);
+        const avgHours = (totalMinsLast7 / 60 / 7).toFixed(1);
         const avgEl = document.getElementById('chart-7day-avg');
         if (avgEl) {
-          avgEl.innerText = `7-Day Avg: ${avgHours}h / day (${totalTickedLast7} slots)`;
+          avgEl.innerText = `7-Day Avg: ${avgHours}h / day (${totalSlotsLast7} slots)`;
         }
       },
 
-      // --- COMPONENT 2: TIMER CONTROLLER METHODS ---
+      // --- COMPONENT 2: HORIZONTAL TIMER CONTROLLER METHODS ---
       updateTimerDisplay: function() {
         const mins = Math.floor(timerState.remainingSecs / 60);
         const secs = timerState.remainingSecs % 60;
@@ -2851,13 +2946,12 @@
         const dispEl = document.getElementById('timer-display-time');
         if (dispEl) dispEl.innerText = timeStr;
 
-        const ring = document.getElementById('timer-circle-progress');
-        if (ring) {
+        // Update horizontal progress bar
+        const fillBar = document.getElementById('timer-horizontal-fill');
+        if (fillBar) {
           const total = timerState.durationSecs || 1;
-          const fraction = timerState.remainingSecs / total;
-          const circumference = 615.75;
-          const offset = circumference * (1 - fraction);
-          ring.style.strokeDashoffset = offset;
+          const fraction = Math.max(0, Math.min(1, timerState.remainingSecs / total));
+          fillBar.style.width = `${(fraction * 100).toFixed(1)}%`;
         }
       },
 
@@ -2868,10 +2962,10 @@
 
         if (!timerState.isRunning) {
           timerState.isRunning = true;
-          if (btnText) btnText.innerText = "Pause Focus";
+          if (btnText) btnText.innerText = "Pause";
           if (btnIcon) btnIcon.innerText = "⏸";
           if (badge) {
-            badge.innerText = "FOCUS IN PROGRESS 🔥";
+            badge.innerText = "FOCUSING 🔥";
             badge.style.color = "var(--green)";
           }
           playPlopSound('complete');
@@ -2883,10 +2977,10 @@
             } else {
               clearInterval(timerState.intervalId);
               timerState.isRunning = false;
-              if (btnText) btnText.innerText = "Start Focus";
+              if (btnText) btnText.innerText = "Start";
               if (btnIcon) btnIcon.innerText = "▶";
               if (badge) {
-                badge.innerText = "SESSION COMPLETED! 🎉";
+                badge.innerText = "COMPLETED! 🎉";
                 badge.style.color = "var(--amber)";
               }
               playChimeSound();
@@ -2900,7 +2994,7 @@
         } else {
           clearInterval(timerState.intervalId);
           timerState.isRunning = false;
-          if (btnText) btnText.innerText = "Resume Focus";
+          if (btnText) btnText.innerText = "Start";
           if (btnIcon) btnIcon.innerText = "▶";
           if (badge) {
             badge.innerText = "PAUSED ⏸";
@@ -2918,10 +3012,10 @@
         const btnText = document.getElementById('btn-timer-text');
         const btnIcon = document.getElementById('btn-timer-icon');
         const badge = document.getElementById('timer-status-badge');
-        if (btnText) btnText.innerText = "Start Focus";
+        if (btnText) btnText.innerText = "Start";
         if (btnIcon) btnIcon.innerText = "▶";
         if (badge) {
-          badge.innerText = "READY TO STUDY";
+          badge.innerText = "READY TO FOCUS";
           badge.style.color = "var(--green)";
         }
         playPlopSound('pending');
@@ -2935,36 +3029,32 @@
         timerState.remainingSecs = minutes * 60;
         timerState.modeTitle = label;
 
-        document.querySelectorAll('.timer-mode-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.timer-preset-chip').forEach(b => b.classList.remove('active'));
         if (btnEl) btnEl.classList.add('active');
 
-        const modeLabel = document.getElementById('timer-mode-label');
-        if (modeLabel) modeLabel.innerText = label;
-
-        const customBox = document.getElementById('timer-custom-dialog');
-        if (customBox) customBox.style.display = 'none';
+        const customInp = document.getElementById('input-custom-minutes');
+        if (customInp) customInp.value = minutes;
 
         this.resetTimer();
       },
 
-      toggleCustomTimerDialog: function(btnEl) {
-        const customBox = document.getElementById('timer-custom-dialog');
-        if (!customBox) return;
-        const isHidden = customBox.style.display === 'none' || !customBox.style.display;
-        customBox.style.display = isHidden ? 'flex' : 'none';
-        if (isHidden) {
-          document.querySelectorAll('.timer-mode-btn').forEach(b => b.classList.remove('active'));
-          btnEl.classList.add('active');
+      adjustTimerMinutes: function(deltaMins) {
+        let currentMins = Math.floor(timerState.remainingSecs / 60) + deltaMins;
+        if (currentMins < 1) currentMins = 1;
+        if (currentMins > 240) currentMins = 240;
+        timerState.remainingSecs = currentMins * 60;
+        if (currentMins * 60 > timerState.durationSecs) {
+          timerState.durationSecs = currentMins * 60;
         }
+        playPlopSound('pending');
+        this.updateTimerDisplay();
       },
 
       applyCustomTimerMinutes: function() {
         const inp = document.getElementById('input-custom-minutes');
-        const mins = parseInt(inp ? inp.value : 30, 10);
+        const mins = parseInt(inp ? inp.value : 25, 10);
         if (mins && mins > 0) {
           this.setTimerDuration(mins, `${mins}m Custom`, null);
-          const modeLabel = document.getElementById('timer-mode-label');
-          if (modeLabel) modeLabel.innerText = `${mins}m Custom`;
         }
       },
 
