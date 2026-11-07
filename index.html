@@ -710,101 +710,63 @@
     }
     .month-pills-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0.45rem;
-      margin-bottom: 1rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 0.25rem;
     }
-    @media (max-width: 600px) {
-      .month-pills-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    @media (max-width: 380px) {
+    @media (max-width: 650px) {
       .month-pills-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+      }
+    }
+    @media (max-width: 390px) {
+      .month-pills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.55rem;
       }
     }
     .month-pill-btn {
       background: var(--card-sub);
       border: 1.5px solid var(--border);
       color: var(--text);
-      padding: 0.55rem 0.4rem;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 800;
+      padding: 0.95rem 0.6rem;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 900;
       cursor: pointer;
       text-align: center;
-      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .month-pill-btn .m-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .month-pill-btn .m-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
     }
     .month-pill-btn:hover {
       border-color: var(--border-focus);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
     .month-pill-btn.active {
       background: linear-gradient(135deg, #10b981, #059669);
       border-color: #059669;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
     }
-
-    /* INTERACTIVE MONTH CALENDAR GRID */
-    .mini-calendar-wrapper {
-      background: var(--card-sub);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 0.9rem;
-      margin-top: 0.75rem;
-    }
-    .mini-cal-weekdays {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      text-align: center;
-      font-size: 0.7rem;
-      font-weight: 900;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .mini-cal-days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.3rem;
-    }
-    .mini-cal-day {
-      aspect-ratio: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--text);
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      position: relative;
-      transition: all 0.12s ease;
-    }
-    .mini-cal-day:hover {
-      border-color: var(--border-focus);
-      transform: scale(1.04);
-    }
-    .mini-cal-day.empty {
-      background: transparent;
-      border-color: transparent;
-      cursor: default;
-    }
-    .mini-cal-day.today {
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-    .mini-cal-day.active-day {
-      background: linear-gradient(135deg, #10b981, #059669);
-      border-color: #059669;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+    .month-pill-btn.active .m-num {
+      color: rgba(255, 255, 255, 0.85);
     }
 
     /* FOCUS / SITTING POWER */
@@ -917,7 +879,7 @@
       gap: 0.25rem;
     }
 
-    /* BOTTOM NAV DOCK (4 TABS) */
+    /* BOTTOM DOCK NAVIGATION (4 TABS) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -1142,9 +1104,9 @@
       <div id="weekly-groups-list"></div>
     </div>
 
-    <!-- TAB 3: MONTHLY PLANNER (NEW - RIGHT SIDE OF WEEKLY) -->
+    <!-- TAB 3: MONTHLY PLANNER (RIGHT SIDE OF WEEKLY) -->
     <div id="tab-monthly" class="tab-pane" style="display:none;">
-      <!-- Month Controls Card: Year Switcher, Jan-Dec Month Selector & Mini Calendar -->
+      <!-- Month Controls Card: Year Switcher & Jan-Dec Large Month Cards -->
       <div class="month-controls-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
           <div>
@@ -1159,20 +1121,8 @@
           </div>
         </div>
 
-        <!-- Jan to Dec 12-Month Pills -->
+        <!-- Jan to Dec 12-Month Pills (Prominent & Expanded) -->
         <div class="month-pills-grid" id="month-pills-container"></div>
-
-        <!-- Interactive Calendar for Selected Month -->
-        <div class="mini-calendar-wrapper">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; padding:0 0.2rem;">
-            <span style="font-size:0.8rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">📅 Monthly Calendar View</span>
-            <span style="font-size:0.72rem; color:var(--text-muted); font-weight:700;">Tap day to view routine</span>
-          </div>
-          <div class="mini-cal-weekdays">
-            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-          </div>
-          <div class="mini-cal-days-grid" id="mini-cal-days-grid"></div>
-        </div>
       </div>
 
       <!-- Circular Gauge Card for Monthly Progress -->
@@ -2130,7 +2080,7 @@
         }
       },
 
-      // --- MONTHLY PLANNER METHODS (NEW) ---
+      // --- MONTHLY PLANNER METHODS ---
       getMonthlyKey: function() {
         const mStr = String(state.selectedMonthIndex + 1).padStart(2, '0');
         return `${state.selectedMonthYear}-${mStr}`;
@@ -2144,13 +2094,14 @@
         document.getElementById('monthly-year-label').innerText = year;
         document.getElementById('monthly-heading-title').innerText = `${MONTH_NAMES[monthIdx]} ${year}`;
 
-        // Render Jan to Dec Month Pills
+        // Render Jan to Dec Large Month Cards
         const pillsContainer = document.getElementById('month-pills-container');
         pillsContainer.innerHTML = '';
         MONTH_SHORT.forEach((mShort, idx) => {
           const btn = document.createElement('button');
           btn.className = `month-pill-btn ${idx === monthIdx ? 'active' : ''}`;
-          btn.innerText = mShort;
+          const numStr = String(idx + 1).padStart(2, '0');
+          btn.innerHTML = `<span class="m-num">MONTH ${numStr}</span><span class="m-name">${mShort.toUpperCase()}</span>`;
           btn.onclick = () => {
             state.selectedMonthIndex = idx;
             playPlopSound('pending');
@@ -2159,9 +2110,6 @@
           };
           pillsContainer.appendChild(btn);
         });
-
-        // Render Interactive Month Calendar Grid
-        this.renderMiniCalendar(year, monthIdx);
 
         // Fetch tasks for the current month
         if (!state.monthlyMap[monthKey]) {
@@ -2194,7 +2142,7 @@
         listEl.innerHTML = '';
 
         if (tasks.length === 0) {
-          listEl.innerHTML = `<div style="font-size:0.85rem; color:var(--text-muted); padding:1rem 0; text-align:center;">No targets set for ${MONTH_NAMES[monthIdx]} ${year}. Add your syllabus goals below!</div>`;
+          listEl.innerHTML = `<div style="font-size:0.85rem; color:var(--text-muted); padding:1.2rem 0; text-align:center;">No targets set for ${MONTH_NAMES[monthIdx]} ${year}. Add your syllabus goals below!</div>`;
         } else {
           tasks.forEach(task => {
             const status = task.status || 'Pending';
@@ -2233,48 +2181,6 @@
             `;
             listEl.appendChild(row);
           });
-        }
-      },
-
-      renderMiniCalendar: function(year, monthIdx) {
-        const gridEl = document.getElementById('mini-cal-days-grid');
-        gridEl.innerHTML = '';
-
-        const firstDayIndex = new Date(year, monthIdx, 1).getDay();
-        const totalDays = new Date(year, monthIdx + 1, 0).getDate();
-
-        const todayObj = new Date();
-        const realYear = todayObj.getFullYear();
-        const realMonth = todayObj.getMonth();
-        const realDate = todayObj.getDate();
-
-        // Empty cells for alignment before first day
-        for (let i = 0; i < firstDayIndex; i++) {
-          const emptyCell = document.createElement('div');
-          emptyCell.className = 'mini-cal-day empty';
-          gridEl.appendChild(emptyCell);
-        }
-
-        // Real day cells
-        for (let day = 1; day <= totalDays; day++) {
-          const cell = document.createElement('div');
-          cell.className = 'mini-cal-day';
-          cell.innerText = day;
-
-          const isRealToday = (year === realYear && monthIdx === realMonth && day === realDate);
-          if (isRealToday) cell.classList.add('today');
-
-          const cellDateKey = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-          if (state.selectedDateKey === cellDateKey) {
-            cell.classList.add('active-day');
-          }
-
-          cell.onclick = () => {
-            state.selectedDateKey = cellDateKey;
-            app.switchTab('today');
-          };
-
-          gridEl.appendChild(cell);
         }
       },
 
