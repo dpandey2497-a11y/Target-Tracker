@@ -111,7 +111,7 @@
       padding: 0 0.85rem;
     }
 
-    /* HEADER */
+    /* HEADER - CLEAN & ZERO OVERLAP */
     header {
       width: 100%;
       background: var(--card-bg);
@@ -829,7 +829,7 @@
       background: linear-gradient(135deg, #10b981, #059669);
       border-color: #059669;
       color: #ffffff;
-      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.42);
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.42);
     }
     .month-pill-btn.active .m-num {
       color: rgba(255, 255, 255, 0.88);
@@ -1453,6 +1453,13 @@
           </div>
         </div>
         <div class="header-actions">
+          <button class="icon-btn" onclick="app.exportBackup()" title="Download Backup JSON">
+            <span>💾</span> <span class="btn-label">Backup</span>
+          </button>
+          <button class="icon-btn" onclick="app.triggerImport()" title="Restore from Backup JSON">
+            <span>📥</span> <span class="btn-label">Restore</span>
+          </button>
+          <input type="file" id="backup-file-input" accept=".json" style="display:none;" onchange="app.importBackup(event)">
           <button class="icon-btn" onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">
             <span id="theme-icon">🌙</span> <span class="btn-label">Theme</span>
           </button>
@@ -2125,8 +2132,7 @@
     function getActiveWeek() {
       let w = state.weeks.find(x => x.id === state.activeWeekId);
       if (!w && state.weeks.length > 0) {
-        w = state.weeks[0];
-        state.activeWeekId = w.id;
+        w = state.activeWeekId = w.id;
       }
       return w;
     }
@@ -2166,6 +2172,64 @@
         } else {
           document.exitFullscreen().catch(() => {});
         }
+      },
+
+      exportBackup: function() {
+        try {
+          const exportData = {
+            version: "v10",
+            exportedAt: new Date().toISOString(),
+            storageKey: STORAGE_KEY,
+            state: state
+          };
+          const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
+          const downloadAnchor = document.createElement('a');
+          const dateStr = new Date().toISOString().split('T')[0];
+          downloadAnchor.setAttribute("href", dataStr);
+          downloadAnchor.setAttribute("download", `Target_Tracker_Backup_${dateStr}.json`);
+          document.body.appendChild(downloadAnchor);
+          downloadAnchor.click();
+          downloadAnchor.remove();
+          playPlopSound('complete');
+        } catch (err) {
+          alert("Backup export error: " + err.message);
+        }
+      },
+
+      triggerImport: function() {
+        const fileInput = document.getElementById('backup-file-input');
+        if (fileInput) {
+          fileInput.value = "";
+          fileInput.click();
+        }
+      },
+
+      importBackup: function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const parsed = JSON.parse(e.target.result);
+            const importedState = parsed.state || parsed;
+
+            if (!importedState.habitsMap && !importedState.focusSlotsMap && !importedState.weeks) {
+              throw new Error("Invalid backup file format.");
+            }
+
+            if (confirm("Restore this backup? Existing local data will be replaced.")) {
+              state = Object.assign(state, importedState);
+              saveState();
+              playPlopSound('complete');
+              alert("Data restored successfully!");
+              location.reload();
+            }
+          } catch (err) {
+            alert("Error importing backup: " + err.message);
+          }
+        };
+        reader.readAsText(file);
       },
 
       resetAllData: function() {
@@ -2837,7 +2901,7 @@
                 <div class="task-text">${task.title}</div>
               </div>
               <div class="task-meta-col">
-                <span class="badge-pill ${pClass}" title="Click to cycle Priority" onclick="event.stopPropagation(); app.cycleMonthlyTaskPriority('${task.id}')">${priority}</span>
+                <span class="badge-pill ${pClass}" title="Click to cycle Priority" onclick="event.stopPropagation(); app.cycleWeeklyTaskPriority('${task.id}')">${priority}</span>
                 <span class="badge-pill ${badgeStatusClass}">${status.toUpperCase()}</span>
                 <button class="row-del-btn" onclick="event.stopPropagation(); app.deleteMonthlyTask('${task.id}')">✕</button>
               </div>
